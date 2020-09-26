@@ -1,6 +1,9 @@
-let count = 0;
 let StartingPosition = 0;
 const WinningPosition = 100;
+let count = 0;
+let throwDice;
+let option;
+
 class SnakeLadder {
 
     getRandomNo = (input) => {
@@ -9,38 +12,54 @@ class SnakeLadder {
 
     getWinResult = () => {
         while (StartingPosition != WinningPosition) {
-            let throwDice = this.getRandomNo(6);
-            let option = this.getRandomNo(3);
+            throwDice = this.getRandomNo(6);
+            option = this.getRandomNo(3);
             switch (option) {
                 case 1:
-                    console.log("YOU GOT==>" + throwDice)
-                    console.log("OOPS.. YOU STEP ON SNAKE")
-                    StartingPosition = StartingPosition - throwDice;
-                    if(StartingPosition < 0)
-                    StartingPosition = StartingPosition + throwDice;
-                    console.log("YOUR CURRENT POSITION==>" + StartingPosition)
-                    console.log();
+                    StartingPosition = this.getSnakeMove();
                     count++;
 
                 case 2:
-                    console.log("YOU GOT==>" + throwDice)
-                    console.log("OOPS...YOU MADE A FOUL")
-                    console.log("YOU WILL BE IN SAME POSITION")
-                    console.log();
+                    this.getFoulMove();
                     count++;
 
                 case 3:
-                    console.log("YOU GOT==>" + throwDice)
-                    console.log("CONGRATS... YOU STEP ON LADDER")
-                    StartingPosition = StartingPosition + throwDice;
-                    if(StartingPosition > WinningPosition)
-                    StartingPosition = StartingPosition - throwDice;
-                    console.log("YOUR CURRENT POSITION IS " + StartingPosition)
-                    console.log();
+                    StartingPosition = this.getLadderMove();
                     count++;
             }
         }
-        console.log("TOTAL NO OF DICE PLAYED==>"+count)
+        console.log("TOTAL NO OF DICE PLAYED==>" + count)
+    }
+
+    getSnakeMove = () => {
+        console.log("YOU GOT==>" + throwDice)
+        console.log("OOPS.. YOU STEP ON SNAKE")
+        StartingPosition = StartingPosition - throwDice;
+        if (StartingPosition < 0)
+            StartingPosition = StartingPosition + throwDice;
+        console.log("YOUR CURRENT POSITION==>" + StartingPosition)
+        console.log();
+        return StartingPosition;
+    }
+
+    getFoulMove = () => {
+        console.log("YOU GOT==>" + throwDice)
+        console.log("OOPS...YOU MADE A FOUL")
+        console.log("YOU WILL BE IN SAME POSITION")
+        console.log();
+    }
+
+    getLadderMove = () => {
+        console.log("YOU GOT==>" + throwDice)
+        console.log("CONGRATS... YOU STEP ON LADDER")
+        StartingPosition = StartingPosition + throwDice;
+        if (StartingPosition > WinningPosition) {
+            StartingPosition = StartingPosition - throwDice;
+            console.log("OOPS...YOU CANT EXCEED 100")
+        }
+        console.log("YOUR CURRENT POSITION IS " + StartingPosition)
+        console.log();
+        return StartingPosition;
     }
 }
 
