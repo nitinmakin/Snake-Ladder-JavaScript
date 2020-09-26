@@ -1,3 +1,4 @@
+let count = 0;
 let StartingPosition = 0;
 const WinningPosition = 100;
 class SnakeLadder {
@@ -19,12 +20,14 @@ class SnakeLadder {
                     StartingPosition = StartingPosition + throwDice;
                     console.log("YOUR CURRENT POSITION==>" + StartingPosition)
                     console.log();
+                    count++;
 
                 case 2:
                     console.log("YOU GOT==>" + throwDice)
                     console.log("OOPS...YOU MADE A FOUL")
                     console.log("YOU WILL BE IN SAME POSITION")
                     console.log();
+                    count++;
 
                 case 3:
                     console.log("YOU GOT==>" + throwDice)
@@ -34,8 +37,10 @@ class SnakeLadder {
                     StartingPosition = StartingPosition - throwDice;
                     console.log("YOUR CURRENT POSITION IS " + StartingPosition)
                     console.log();
+                    count++;
             }
         }
+        console.log("TOTAL NO OF DICE PLAYED==>"+count)
     }
 }
 
