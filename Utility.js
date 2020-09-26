@@ -1,12 +1,13 @@
 let StartingPosition = 0;
-let WinningPosition = 100;
+const WinningPosition = 100;
 class SnakeLadder {
+
     getRandomNo = (input) => {
         return (Math.floor(Math.random() * input)) + 1;
     }
 
     getWinResult = () => {
-        while (StartingPosition <= WinningPosition) {
+        while (StartingPosition != WinningPosition) {
             let throwDice = this.getRandomNo(6);
             let option = this.getRandomNo(3);
             switch (option) {
@@ -14,6 +15,8 @@ class SnakeLadder {
                     console.log("YOU GOT==>" + throwDice)
                     console.log("OOPS.. YOU STEP ON SNAKE")
                     StartingPosition = StartingPosition - throwDice;
+                    if(StartingPosition < 0)
+                    StartingPosition = StartingPosition + throwDice;
                     console.log("YOUR CURRENT POSITION==>" + StartingPosition)
                     console.log();
 
@@ -27,6 +30,8 @@ class SnakeLadder {
                     console.log("YOU GOT==>" + throwDice)
                     console.log("CONGRATS... YOU STEP ON LADDER")
                     StartingPosition = StartingPosition + throwDice;
+                    if(StartingPosition > WinningPosition)
+                    StartingPosition = StartingPosition - throwDice;
                     console.log("YOUR CURRENT POSITION IS " + StartingPosition)
                     console.log();
             }
